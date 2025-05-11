@@ -1,0 +1,27 @@
+.balance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .balance-table th,
+  .balance-table td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  
+  .header-row th {
+    background-color: #a86a6a;
+    font-weight: bold;
+  }
+  
+  .section-row td {
+    background-color: #f8f0f0;
+    font-weight: bold;
+  }
+  
+  .data-row td {
+    background-color: #fff;
+  }
+  

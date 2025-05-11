@@ -1,0 +1,29 @@
+
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3001:3001" # Backend
+      - "5173:5173" # Frontend
+    volumes:
+      - .:/app
+    working_dir: /app
+    depends_on:
+      - mock-api
+    command: >
+      sh -c "
+        until curl -s http://mock-api:3000; do
+          echo 'Please wait until the mock API is ready! Loading...';
+          sleep 1;
+        done;
+        echo 'mock-api is up. Starting frontend and backend...';
+        cd ./frontend && npm run dev -- --host &
+        cd ./backend && npx ts-node server.ts
+      "
+
+  mock-api:
+    image: jaypeng2015/show-me-the-money
+    ports:
+      - "3000:3000" # Mock api
